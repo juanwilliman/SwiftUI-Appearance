@@ -11,29 +11,31 @@ import SwiftUI
 
 struct ContentView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
-    @StateObject private var themeController = ThemeController()
+    @StateObject private var themeController = ThemeController.shared
     
     // MARK: - Body
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 30) {
-            ForEach(Appearance.allCases, id: \.self) { appearance in
-                Button(appearance.rawValue) {
-                    themeController.selectAppearance(appearance)
-                }.foregroundColor(themeController.selectedAppearance == appearance ? .red : .accentColor)
+        NavigationStack {
+            List {
+                Section("Customization") {
+                    Picker("Appearance", selection: $themeController.selectedAppearance) {
+                        ForEach(Appearance.allCases, id: \.self) { appearance in
+                            Text(appearance.rawValue)
+                        }
+                    }
+                }
             }
+            .navigationTitle("Appearance")
         }
-        .padding()
         .preferredColorScheme(themeController.selectedAppearance.colorScheme)
     }
 }
 
 // MARK: - Preview
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }

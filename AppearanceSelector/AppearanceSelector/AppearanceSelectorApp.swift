@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - Appearance Selector App
+
 @main
 struct AppearanceSelectorApp: App {
     var body: some Scene {

@@ -11,18 +11,13 @@ import SwiftUI
 
 class ThemeController: ObservableObject {
     
-    // MARK: - Variables
+    // MARK: - Properties
         
     @AppStorage("selectedAppearance") var selectedAppearance: Appearance = .auto
     
-}
-
-// MARK: - Appearance
-
-extension ThemeController {
+    // MARK: - Init
     
-    func selectAppearance(_ appearance: Appearance) {
-        selectedAppearance = appearance
-    }
+    static let shared = ThemeController()
+    private init() {}
     
 }
